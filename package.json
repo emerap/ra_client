@@ -1,0 +1,26 @@
+{
+  "name": "emerap/ra_client",
+  "type": "library",
+  "description": "Client API for ra framework",
+  "keywords": [
+    "api"
+  ],
+  "homepage": "http://emerap.com",
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Alexander Pokhodyun",
+      "email": "karbukul@yourtask.ru",
+      "homepage": "https://vk.com/karbunkul",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Emerap\\RaClient\\": "./src/"
+    }
+  }
+}
