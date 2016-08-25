@@ -7,7 +7,7 @@ namespace Emerap\RaClient;
  *
  * @package Emerap\RaClient
  */
-interface RaClientInterface {
+interface ClientInterface {
 
   /**
    * Get sources.

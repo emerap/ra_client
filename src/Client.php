@@ -7,7 +7,7 @@ namespace Emerap\RaClient;
  *
  * @package Emerap\RaClient
  */
-abstract class RaClient implements RaClientInterface {
+abstract class Client implements ClientInterface {
 
   protected $tag;
   protected $platform;
