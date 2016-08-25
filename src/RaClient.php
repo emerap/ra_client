@@ -7,7 +7,7 @@ namespace Emerap\RaClient;
  *
  * @package Emerap\RaClient
  */
-class RaClient {
+abstract class RaClient implements RaClientInterface {
 
   protected $tag;
   protected $platform;
@@ -25,11 +25,29 @@ class RaClient {
   public function __construct($tag) {
     if ($source = self::getSource($tag)) {
       $this->setTag($tag)
-        ->setPath($source['path'])
-        ->setPlatform($source['platform'])
-        ->setFormat('json')
-        ->setLang('en');
+           ->setPath($source['path'])
+           ->setPlatform($source['platform'])
+           ->setFormat('json')
+           ->setLang('en');
     }
+  }
+
+  /**
+   * Register client.
+   *
+   * @param int $pin
+   *   Client pin.
+   *
+   * @return $this
+   */
+  public function register($pin) {
+    $params = [
+      'tag'      => $this->getTag(),
+      'platform' => $this->getPlatform(),
+      'pin'      => $pin,
+    ];
+
+    return $this->query('ra.pair', $params);
   }
 
   /**
@@ -59,23 +77,6 @@ class RaClient {
   }
 
   /**
-   * Register client.
-   *
-   * @param int $pin
-   *   Client pin.
-   *
-   * @return $this
-   */
-  public function register($pin) {
-    $params = [
-      'tag' => $this->getTag(),
-      'platform' => $this->getPlatform(),
-      'pin' => $pin,
-    ];
-    return $this->query('ra.pair', $params);
-  }
-
-  /**
    * Get source.
    *
    * @param string $tag
@@ -86,6 +87,7 @@ class RaClient {
    */
   public static function getSource($tag) {
     $sources = self::getSources();
+
     return (isset($sources[$tag])) ? $sources[$tag] : FALSE;
   }
 
@@ -123,6 +125,7 @@ class RaClient {
    */
   private function setTag($tag) {
     $this->tag = $tag;
+
     return $this;
   }
 
@@ -146,6 +149,7 @@ class RaClient {
    */
   private function setPlatform($platform) {
     $this->platform = $platform;
+
     return $this;
   }
 
@@ -169,6 +173,7 @@ class RaClient {
    */
   private function setPath($path) {
     $this->path = $path;
+
     return $this;
   }
 
@@ -192,6 +197,7 @@ class RaClient {
    */
   public function setFormat($format) {
     $this->format = $format;
+
     return $this;
   }
 
@@ -215,6 +221,7 @@ class RaClient {
    */
   public function setLang($lang) {
     $this->lang = $lang;
+
     return $this;
   }
 
