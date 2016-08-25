@@ -38,4 +38,4 @@ $tag = 'ra_docs';
 
 // CustomClient instance.
 $client = new \YOUR_PACKAGE\CustomClient('ra_docs');
-```
+```s

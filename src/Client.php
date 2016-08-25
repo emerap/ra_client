@@ -23,7 +23,7 @@ abstract class Client implements ClientInterface {
    *   Client tag.
    */
   public function __construct($tag) {
-    if ($source = self::getSource($tag)) {
+    if ($source = static::getSource($tag)) {
       $this->setTag($tag)
            ->setPath($source['path'])
            ->setPlatform($source['platform'])
@@ -86,8 +86,7 @@ abstract class Client implements ClientInterface {
    *   Source or false.
    */
   public static function getSource($tag) {
-    $sources = self::getSources();
-
+    $sources = static::getSources();
     return (isset($sources[$tag])) ? $sources[$tag] : FALSE;
   }
 
